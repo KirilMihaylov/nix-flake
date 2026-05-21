@@ -1,0 +1,11 @@
+--- a/nixos-option.sh
++++ b/nixos-option.sh
+@@ -5,7 +5,7 @@ set -eou pipefail
+ recursive=false
+ no_flake=false
+ positional_args=()
+-nix_args=(--arg nixos "import <nixpkgs/nixos> { }")
++nix_args=(--arg nixos "import <nixos-system>")
+ flake=""
+ 
+ 
