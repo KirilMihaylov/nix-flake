@@ -1,0 +1,182 @@
+--- a/browser/base/content/main-popupset.inc.xhtml
++++ b/browser/base/content/main-popupset.inc.xhtml
+@@ -862,7 +862,6 @@
+ #include ../../components/controlcenter/content/trustPanel.inc.xhtml
+ #include ../../components/controlcenter/content/protectionsPanel.inc.xhtml
+ #include ../../components/downloads/content/downloadsPanel.inc.xhtml
+-#include ../../components/sharing/content/sharePanel.inc.xhtml
+ #include ../../components/translations/content/selectTranslationsPanel.inc.xhtml
+ #include ../../components/translations/content/fullPageTranslationsPanel.inc.xhtml
+ #include ../../components/tabbrowser/content/browser-allTabsMenu.inc.xhtml
+--- a/browser/components/moz.build
++++ b/browser/components/moz.build
+@@ -27,12 +27,9 @@
+ DIRS += [
+     "about",
+     "aboutlogins",
+-    "aboutwelcome",
+-    "aiwindow",
+     "asrouter",
+     "attribution",
+     "backup",
+-    "contentanalysis",
+     "contextualidentity",
+     "controlcenter",
+     "customizableui",
+@@ -40,8 +37,6 @@
+     "downloads",
+     "enterprisepolicies",
+     "extensions",
+-    "firefoxview",
+-    "genai",
+     "ipprotection",
+     "messagepreview",
+     "migration",
+@@ -50,35 +45,27 @@
+     "newtab",
+     "originattributes",
+     "pagedata",
+-    "passwordmgr",
+     "permissions",
+     "pictureinpicture",
+     "places",
+     "preferences",
+     "privatebrowsing",
+-    "prompts",
+     "protections",
+     "protocolhandler",
+     "qrcode",
+-    "referrals",
+     "remotecontrol",
+     "reportbrokensite",
+     "resistfingerprinting",
+     "screenshots",
+     "search",
+     "sessionstore",
+-    "sharing",
+     "shell",
+-    "sidebar",
+-    "syncedtabs",
+     "tabbrowser",
+     "tabnotes",
+     "tabunloader",
+     "taskbartabs",
+-    "textrecognition",
+     "topsites",
+     "translations",
+-    "uitour",
+     "urlbar",
+     "webrtc",
+ ]
+--- a/browser/moz.configure
++++ b/browser/moz.configure
+@@ -4,7 +4,7 @@
+
+ imply_option("MOZ_GECKOVIEW_HISTORY", True)
+ imply_option("MOZ_SERVICES_HEALTHREPORT", False)
+-imply_option("MOZ_SERVICES_SYNC", True)
++imply_option("MOZ_SERVICES_SYNC", False)
+ imply_option("MOZ_DEDICATED_PROFILES", True)
+ imply_option("MOZ_BLOCK_PROFILE_DOWNGRADE", True)
+ imply_option("MOZ_NORMANDY", False)
+--- a/toolkit/components/moz.build
++++ b/toolkit/components/moz.build
+@@ -146,7 +146,7 @@
+     DIRS += ["aboutwebauthn"]
+
+ if CONFIG["MOZ_BUILD_APP"] == "browser":
+-    DIRS += ["messaging-system", "normandy"]
++    DIRS += ["messaging-system"]
+
+ if CONFIG["MOZ_BUILD_APP"] != "comm/mail":
+     DIRS += ["ipprotection"]
+--- a/toolkit/components/glean/metrics_index.py
++++ b/toolkit/components/glean/metrics_index.py
+@@ -85,7 +85,6 @@
+     "toolkit/components/mediasniffer/metrics.yaml",
+     "toolkit/components/messaging-system/metrics.yaml",
+     "toolkit/components/ml/metrics.yaml",
+-    "toolkit/components/normandy/metrics.yaml",
+     "toolkit/components/passwordmgr/metrics.yaml",
+     "toolkit/components/pdfjs/metrics.yaml",
+     "toolkit/components/printing/metrics.yaml",
+@@ -113,7 +112,6 @@
+ # Order is lexicographical, enforced by t/c/glean/tests/pytest/test_yaml_indices.py
+ firefox_desktop_metrics = [
+     "browser/actors/metrics.yaml",
+-    "browser/components/aiwindow/metrics.yaml",
+     "browser/components/asrouter/metrics.yaml",
+     "browser/components/attribution/metrics.yaml",
+     "browser/components/backup/metrics.yaml",
+@@ -122,29 +120,22 @@
+     "browser/components/customkeys/metrics.yaml",
+     "browser/components/downloads/metrics.yaml",
+     "browser/components/extensions/metrics.yaml",
+-    "browser/components/firefoxview/metrics.yaml",
+-    "browser/components/genai/metrics.yaml",
+     "browser/components/ipprotection/metrics.yaml",
+     "browser/components/metrics.yaml",
+     "browser/components/migration/metrics.yaml",
+     "browser/components/newtab/metrics.yaml",
+-    "browser/components/places/metrics.yaml",
+     "browser/components/preferences/metrics.yaml",
+     "browser/components/privatebrowsing/metrics.yaml",
+     "browser/components/profiles/metrics.yaml",
+     "browser/components/protections/metrics.yaml",
+     "browser/components/protocolhandler/metrics.yaml",
+-    "browser/components/referrals/metrics.yaml",
+     "browser/components/screenshots/metrics.yaml",
+     "browser/components/search/metrics.yaml",
+     "browser/components/sessionstore/metrics.yaml",
+-    "browser/components/sharing/metrics.yaml",
+     "browser/components/shell/metrics.yaml",
+-    "browser/components/sidebar/metrics.yaml",
+     "browser/components/tabbrowser/metrics.yaml",
+     "browser/components/tabnotes/metrics.yaml",
+     "browser/components/taskbartabs/metrics.yaml",
+-    "browser/components/textrecognition/metrics.yaml",
+     "browser/components/urlbar/metrics.yaml",
+     "browser/extensions/search-detection/metrics.yaml",
+     "browser/modules/metrics.yaml",
+@@ -223,7 +214,6 @@
+     "browser/components/backup/pings.yaml",
+     "browser/components/newtab/pings.yaml",
+     "browser/components/profiles/pings.yaml",
+-    "browser/components/referrals/pings.yaml",
+     "browser/components/search/pings.yaml",
+     "browser/components/urlbar/pings.yaml",
+     "browser/modules/pings.yaml",
+--- a/browser/locales/jar.mn
++++ b/browser/locales/jar.mn
+@@ -10,11 +10,8 @@
+ [localization] @AB_CD@.jar:
+   preview/interventions.ftl                        (../components/urlbar/content/interventions.ftl)
+   preview/enUS-searchFeatures.ftl                  (../components/urlbar/content/enUS-searchFeatures.ftl)
+-  preview/onboarding.ftl                           (../components/aboutwelcome/content/onboarding.ftl)
+-  preview/genai.ftl                                (../components/genai/content/genai.ftl)
+   preview/credentialChooser.ftl                    (../../toolkit/components/credentialmanagement/credentialChooser.ftl)
+   browser                                          (%browser/**/*.ftl)
+-  preview/aiWindow.ftl                             (../locales-preview/aiWindow.ftl)
+   preview/smartTabGroups.ftl                       (../locales-preview/smartTabGroups.ftl)
+   preview/privacyPreferences.ftl                   (../locales-preview/privacyPreferences.ftl)
+   preview/autoTabGrouping.ftl                      (../locales-preview/autoTabGrouping.ftl)
+--- a/toolkit/components/nimbus/FeatureManifest.yaml
++++ b/toolkit/components/nimbus/FeatureManifest.yaml
+@@ -4157,17 +4157,5 @@
+           - mobile
+       type: string
+
+-legacyHeartbeat:
+-  description: Normandy Heartbeat exposed to Nimbus
+-  owner: beth@mozilla.com
+-  hasExposure: false
+-  schema:
+-    uri: "resource://normandy/schemas/LegacyHeartbeat.schema.json"
+-    path: "toolkit/components/normandy/schemas/LegacyHeartbeat.schema.json"
+-  variables:
+-    survey:
+-      type: json
+-      description: The Heartbeat survey parameters.
+-
+ fingerprintingProtection:
+   description: Control Fingerprinting Protection
