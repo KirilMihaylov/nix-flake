@@ -1,0 +1,46 @@
+{
+  self,
+  ...
+}:
+{
+  imports = with self.nixosModules; [
+    base
+    brave-origin
+    bluetooth
+    chromium-policies
+    containerisation
+    debug-info
+    desktop
+    development
+    drawy
+    easyeffects
+    fend
+    flatpak
+    gaming
+    gpu-compute-amd
+    graphics-amd
+    gwenview
+    hardening
+    kernel-latest
+    kernel-ntsync
+    krita
+    ktorrent
+    llama-cpp-client
+    networking
+    office-suite
+    ollama-client
+    power-management
+    printing
+    razer-hardware
+    signal-desktop
+    spotify
+    ssh-agent-pam
+    telegram-desktop
+    thunderbird
+    thunderbolt-hardware
+    user-nox
+    virtualisation
+    vlc
+    wireguard
+  ];
+}

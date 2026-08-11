@@ -1,0 +1,107 @@
+#!/usr/bin/env sh
+
+set -eu
+
+while :
+do
+  case "${1-"--"}" in
+    ('--') break;;
+    ('--host'|'--host='*)
+      case "${host+"1"}" in
+        ('set')
+          echo '"--host" option already used!' >&2
+
+          exit 1
+          ;;
+      esac
+
+      host="${1#'--host'}"
+
+      case "${host}" in
+        ('')
+          host="${2?'"--host" is not followed by another option!'}"
+
+          shift 1
+          ;;
+        ('='*) host="${host#'='}";;
+      esac
+      ;;
+    ('--skip-no-flake')
+      case "${skip_no_flake+"1"}" in
+          ('set')
+          echo '"--skip-no-flake" option already used!' >&2
+
+          exit 1
+          ;;
+      esac
+
+      skip_no_flake='1'
+      ;;
+    ('--subcommand'|'--subcommand='*)
+      case "${subcommand+"1"}" in
+        ('set')
+          echo '"--subcommand" option already used!' >&2
+
+          exit 1
+          ;;
+      esac
+
+      subcommand="${1#'--subcommand'}"
+
+      case "${subcommand}" in
+        ('')
+          subcommand="${2?'"--subcommand" is not followed by another option!'}"
+
+          shift 1
+          ;;
+        ('='*) subcommand="${subcommand#'='}";;
+      esac
+      ;;
+    (*)
+      echo "Unknown option \"${1}\"!" >&2
+
+      exit 1
+      ;;
+  esac
+
+  shift 1
+done
+
+case "${host+"set"}" in
+  ('set')
+    case "${host}" in
+      ('')
+        echo 'Host must be set to a non-empty value!' >&2
+
+        exit 1
+        ;;
+    esac
+    ;;
+  ('') host="$(uname -n)";;
+esac
+
+case "${subcommand+"set"}" in
+  ('set') ;;
+  (*)
+    echo 'Subcommand must be set via "--subcommand"!' >&2
+
+    exit 1
+    ;;
+esac
+
+case "${subcommand}" in
+  ('')
+    echo 'Subcommand must be set to a non-empty value!' >&2
+
+    exit 1
+    ;;
+esac
+
+nixos-rebuild \
+  "${subcommand}" \
+  --attr "${host}" \
+  --include "nixos-system=${PWD}/system-host.nix" \
+  --include "nixpkgs-overlays=${PWD}/overlays-compat" \
+  --include "system-flake=${PWD}" \
+  "${skip_no_flake-"--no-flake"}" \
+  "${@}"
