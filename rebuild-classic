@@ -1,0 +1,79 @@
+#!/usr/bin/env sh
+
+set -eu
+
+error() {
+  echo "${@}" >&2
+
+  exit 1
+}
+
+case "${#}" in
+  ('0') error 'First argument has to be the operation to be executed!' ;;
+esac
+
+subcommand="${1}"
+readonly subcommand
+shift
+
+case "${subcommand}" in
+  ('') error 'Subcommand must not be an empty argument!'
+esac
+
+set_option() {
+  shift_n='0'
+
+  case "${2}" in
+    ('--'*'='*) value="${2#'--'*'='}" ;;
+    ('--'*)
+      case "${#}" in
+        ('2') error "Flag for ${1} passed, but got no value after it!"
+      esac
+
+      value="${3}"
+
+      shift_n='1'
+      ;;
+    ('-'?*) value="${3#'-'?}"
+  esac
+
+  read -r "${1}" <<EOF
+${value}
+EOF
+
+  readonly "${1}"
+}
+
+while test "${#}" -ne "0"
+do
+  case "${1}" in
+    ('--')
+      shift
+
+      break
+      ;;
+    ('-h'*|'--host'|'--host='*)
+      set_option "host" "${@}"
+
+      case "${host}" in
+        ("") error "Host value is empty!"
+      esac
+      ;;
+    (*) break
+  esac
+
+  shift "$((1 + ${shift_n}))"
+done
+
+case "${host+"1"}" in
+  ('') host="$(exec 'uname' '-n')"
+esac
+
+file="$(exec 'realpath' './system.nix')"
+
+exec \
+  'nixos-rebuild' \
+  "${subcommand}" \
+  '--attr' "${host}" \
+  '--file' "${file}" \
+  "${@}"

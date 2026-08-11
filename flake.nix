@@ -1,0 +1,136 @@
+{
+  description = "NixOS system configuration flake.";
+
+  inputs = {
+    bore-scheduler = {
+      flake = false;
+
+      url = "github:firelzrd/bore-scheduler";
+    };
+
+    disko = {
+      inputs.nixpkgs.follows = "nixpkgs";
+
+      url = "github:nix-community/disko";
+    };
+
+    dxvk = {
+      flake = false;
+
+      ref = "refs/tags/v3.1.1";
+
+      submodules = true;
+
+      type = "git";
+
+      url = "https://github.com/doitsujin/dxvk.git";
+    };
+
+    fenix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+
+      url = "github:nix-community/fenix";
+    };
+
+    flake-compat.url = "github:NixOS/flake-compat";
+
+    flake-parts = {
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+
+      url = "github:hercules-ci/flake-parts";
+    };
+
+    helix = {
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+
+        rust-overlay.follows = "rust";
+      };
+
+      url = "github:helix-editor/helix";
+    };
+
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+
+      url = "github:nix-community/home-manager";
+    };
+
+    librewolf = {
+      allRefs = false;
+
+      flake = false;
+
+      ref = "main";
+
+      type = "git";
+
+      url = "https://librewolf.dev/librewolf/source.git";
+    };
+
+    niri-sticky-window = {
+      flake = false;
+
+      url = "github:KirilMihaylov/niri-sticky-window";
+    };
+
+    nixos-hardware = {
+      inputs.nixpkgs.follows = "nixpkgs";
+
+      url = "github:NixOS/nixos-hardware";
+    };
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    rust = {
+      inputs.nixpkgs.follows = "nixpkgs";
+
+      url = "github:oxalica/rust-overlay";
+    };
+
+    vkd3d-proton = {
+      flake = false;
+
+      ref = "refs/tags/v3.0.1";
+
+      submodules = true;
+
+      type = "git";
+
+      url = "https://github.com/HansKristian-Work/vkd3d-proton.git";
+    };
+  };
+
+  outputs =
+    inputs@{
+      flake-parts,
+      ...
+    }:
+    flake-parts.lib.mkFlake
+      {
+        inherit inputs;
+      }
+      (
+        {
+          lib,
+          ...
+        }:
+        let
+          inherit (lib)
+            filesystem
+            filter
+            flip
+            hasSuffix
+            pipe
+            ;
+        in
+        {
+          imports = pipe ./tracked-source.nix [
+            (flip import lib)
+            (flake: flake + "/flake")
+            filesystem.listFilesRecursive
+            (filter (hasSuffix ".nix"))
+          ];
+        }
+      );
+}
