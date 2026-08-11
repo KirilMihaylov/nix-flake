@@ -1,0 +1,285 @@
+{
+  "nodes": {
+    "bore-scheduler": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789747161,
+        "narHash": "sha256-SVCRpsove8BhDR8qyNYHVxR7fTkWMyEMt1cQUD7NRpM=",
+        "owner": "firelzrd",
+        "repo": "bore-scheduler",
+        "rev": "d429c0226fb5d25d51e6869a4bf7d8256e1122ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "firelzrd",
+        "repo": "bore-scheduler",
+        "type": "github"
+      }
+    },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789770686,
+        "narHash": "sha256-uZkBR7yHdIKUFB5SZdfgh1qkGfI3XmYmI/lTiquxbck=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "725ea35e410ad83be4931d1bff7e090eacaf3563",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
+    "dxvk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789493021,
+        "narHash": "sha256-a9BWTdL1ZSA0Rsf2+N/udDPgSEEEU4idWBzXu8C0pY4=",
+        "ref": "refs/tags/v3.1.1",
+        "rev": "b1a1c99ab52b687cf950d62c88bc2fa316b41663",
+        "revCount": 8252,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/doitsujin/dxvk.git"
+      },
+      "original": {
+        "ref": "refs/tags/v3.1.1",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/doitsujin/dxvk.git"
+      }
+    },
+    "fenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1790943170,
+        "narHash": "sha256-90jjxCm7QgknpZ77ZMqwnKmQndqtRST/ekDtx11IpHs=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "c8ed30fa2e75f7191a0fb8398a4a84dd009d12fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
+    "flake-compat": {
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790898470,
+        "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "helix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "rust"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790649139,
+        "narHash": "sha256-ZjMduEHRsY0H8OHJ5oiF/AcxOBhIiCBwo7D+g1yYwKc=",
+        "owner": "helix-editor",
+        "repo": "helix",
+        "rev": "ba40e547426b0f9896c8bdc699a4ab11f2b37dbc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "helix-editor",
+        "repo": "helix",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790955005,
+        "narHash": "sha256-EEQKUylD8zuRTmDFX4rbwsHQ+iZhqqOldYcFN8SLcE0=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "0560d64401a6d5370732a69d08bc4a6b135962d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "niri-sticky-window": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1781636717,
+        "narHash": "sha256-+Epnq84XhfrBZ4BrolHGkBQ5ISm4AOsHY7awjopZAEI=",
+        "owner": "KirilMihaylov",
+        "repo": "niri-sticky-window",
+        "rev": "8127f67392039fa4db9ae51cefcd502cec3ef84e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KirilMihaylov",
+        "repo": "niri-sticky-window",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790948122,
+        "narHash": "sha256-fDMYyzY1lI5b8RuCMrvoaIgTeRwNnTG4dNk1ucROlQE=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "0953bb1a609df63013176e3463393f8df993d3ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1790822859,
+        "narHash": "sha256-69xHQhAeMAD2wDXO7T2pcOZIF9Sga2W+JkmY2a11Ops=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c59305bab2065cfecc4944690d9eedbb56f3a9fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "bore-scheduler": "bore-scheduler",
+        "disko": "disko",
+        "dxvk": "dxvk",
+        "fenix": "fenix",
+        "flake-compat": "flake-compat",
+        "flake-parts": "flake-parts",
+        "helix": "helix",
+        "home-manager": "home-manager",
+        "niri-sticky-window": "niri-sticky-window",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs",
+        "rust": "rust",
+        "vkd3d-proton": "vkd3d-proton"
+      }
+    },
+    "rust": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790928989,
+        "narHash": "sha256-5r3MN/Rx7N9tLapCBmUq6/zCc3C9J7gNif1HybD1fJQ=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "368fee9beaab04ca6fe7af28db63caa9badb22fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-analyzer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790847093,
+        "narHash": "sha256-rdozQQrPNIUIRX8Wy8A58IUCPARJ3UNQI1JeXaFACgk=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "bcf0514497034e1156f3cc2bb72b99cc9634a949",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rust-lang",
+        "ref": "nightly",
+        "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "vkd3d-proton": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777977252,
+        "narHash": "sha256-7f2Ups5GZMe2vCeb3xveuMnGFSZgk605oy9aUXhvhlk=",
+        "ref": "refs/tags/v3.0.1",
+        "rev": "3b10bd7a7ec6a7347e616cf8bea59333afec2255",
+        "revCount": 6440,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/HansKristian-Work/vkd3d-proton.git"
+      },
+      "original": {
+        "ref": "refs/tags/v3.0.1",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/HansKristian-Work/vkd3d-proton.git"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
