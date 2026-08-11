@@ -1,0 +1,11 @@
+--- a/toolkit/library/rust/gkrust-features.mozbuild
++++ b/toolkit/library/rust/gkrust-features.mozbuild
+@@ -57,7 +57,6 @@
+ # We need to tell Glean it is being built with Gecko.
+ gkrust_features += ["glean_with_gecko"]
+
+-if CONFIG["MOZILLA_OFFICIAL"]:
+-    gkrust_features += ["glean_disable_upload"]
++gkrust_features += ["glean_disable_upload"]
+
+ if CONFIG["MOZ_ENABLE_DBUS"]:
